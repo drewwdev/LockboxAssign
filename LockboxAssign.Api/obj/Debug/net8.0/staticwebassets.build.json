@@ -1,0 +1,11 @@
+{
+  "Version": 1,
+  "Hash": "9Gd7m0p+chSy7fNqzoVYViz09LUf/Gjbx8NTk4YYNSw=",
+  "Source": "LockboxAssign.Api",
+  "BasePath": "_content/LockboxAssign.Api",
+  "Mode": "Default",
+  "ManifestType": "Build",
+  "ReferencedProjectsConfiguration": [],
+  "DiscoveryPatterns": [],
+  "Assets": []
+}
