@@ -13,7 +13,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("LockboxAssign.Api")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+88ff93e9832f757f6ace703727e7fc6ccf41f2dd")]
 [assembly: System.Reflection.AssemblyProductAttribute("LockboxAssign.Api")]
 [assembly: System.Reflection.AssemblyTitleAttribute("LockboxAssign.Api")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]

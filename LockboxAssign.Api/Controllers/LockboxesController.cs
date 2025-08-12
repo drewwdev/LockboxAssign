@@ -9,25 +9,38 @@ namespace LockboxAssign.Api.Controllers;
 [Route("api/[controller]")]
 public class LockboxesController(AppDbContext db) : ControllerBase
 {
-    [HttpGet]
-    public async Task<ActionResult<IEnumerable<LockboxRowDto>>> GetAll()
-    {
-        var rows = await db.Lockboxes
-            .AsNoTracking()
-            .Select(lb => new LockboxRowDto(
-                lb.Id,
-                lb.Label,
-                lb.Assignment != null && lb.Assignment.Equipment != null
-                    ? new AssignedEquipmentDto(
-                        lb.Assignment.Equipment.Id,
-                        lb.Assignment.Equipment.UnitNumber,
-                        lb.Assignment.Equipment.Status,
-                        lb.Assignment.Equipment.ParkingSpot)
-                    : null
-            ))
-            .OrderBy(r => r.Label)
-            .ToListAsync();
+[HttpGet]
+public async Task<ActionResult<IEnumerable<LockboxRowDto>>> GetAll()
+{
+    var rows = await db.Lockboxes
+        .AsNoTracking()
+        .Select(lb => new
+        {
+            lb.Id,
+            lb.Label,
+            Equip = db.Assignments
+                .Where(a => a.LockboxId == lb.Id)
+                .Select(a => a.Equipment)
+                .FirstOrDefault()
+        })
+        .ToListAsync();
 
-        return Ok(rows);
-    }
+    var dtos = rows
+        .OrderBy(x => x.Label)
+        .Select(x => new LockboxRowDto
+        {
+            Id = x.Id,
+            Label = x.Label,
+            AssignedEquipment = x.Equip == null ? null : new AssignedEquipmentDto
+            {
+                Id = x.Equip.Id,
+                UnitNumber = x.Equip.UnitNumber,
+                Status = x.Equip.Status,
+                ParkingSpot = x.Equip.ParkingSpot
+            }
+        })
+        .ToList();
+
+    return Ok(dtos);
+}
 }

@@ -22,7 +22,13 @@ public class EquipmentController(AppDbContext db) : ControllerBase
 
         var list = await q
             .OrderBy(e => e.UnitNumber)
-            .Select(e => new EquipmentListItemDto(e.Id, e.UnitNumber, e.Status, e.ParkingSpot))
+            .Select(e => new EquipmentListItemDto
+            {
+                Id = e.Id,
+                UnitNumber = e.UnitNumber,
+                Status = e.Status,
+                ParkingSpot = e.ParkingSpot
+            })
             .ToListAsync();
 
         return Ok(list);

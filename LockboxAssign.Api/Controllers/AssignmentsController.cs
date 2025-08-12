@@ -78,6 +78,10 @@ public class AssignmentsController(AppDbContext db) : ControllerBase
             saved++;
         }
 
-        return Ok(new SaveAssignmentsResponse(saved, now));
+        return Ok(new SaveAssignmentsResponse
+        {
+            Saved = saved,
+            UpdatedAt = now
+        });
     }
 }

@@ -1,25 +1,41 @@
 namespace LockboxAssign.Api.Contracts;
 
-public record LockboxRowDto(
-    Guid Id,
-    string Label,
-    AssignedEquipmentDto? AssignedEquipment
-);
+public class LockboxRowDto
+{
+    public Guid Id { get; set; }
+    public string Label { get; set; } = default!;
+    public AssignedEquipmentDto? AssignedEquipment { get; set; }
+}
 
-public record AssignedEquipmentDto(
-    Guid Id,
-    string UnitNumber,
-    string Status,
-    string? ParkingSpot
-);
+public class AssignedEquipmentDto
+{
+    public Guid Id { get; set; }
+    public string UnitNumber { get; set; } = default!;
+    public string Status { get; set; } = default!;
+    public string? ParkingSpot { get; set; }
+}
 
-public record EquipmentListItemDto(
-    Guid Id,
-    string UnitNumber,
-    string Status,
-    string? ParkingSpot
-);
+public class EquipmentListItemDto
+{
+    public Guid Id { get; set; }
+    public string UnitNumber { get; set; } = default!;
+    public string Status { get; set; } = default!;
+    public string? ParkingSpot { get; set; }
+}
 
-public record SaveAssignmentsRequest(List<SaveChangeRow> Changes);
-public record SaveChangeRow(Guid LockboxId, Guid? EquipmentId);
-public record SaveAssignmentsResponse(int Saved, DateTimeOffset UpdatedAt);
+public class SaveAssignmentsRequest
+{
+    public List<SaveChangeRow> Changes { get; set; } = new();
+}
+
+public class SaveChangeRow
+{
+    public Guid LockboxId { get; set; }
+    public Guid? EquipmentId { get; set; }
+}
+
+public class SaveAssignmentsResponse
+{
+    public int Saved { get; set; }
+    public DateTimeOffset UpdatedAt { get; set; }
+}

@@ -118,6 +118,7 @@
 /Users/drew/Documents/coding/LockboxAssign/LockboxAssign.Api/obj/Debug/net8.0/LockboxAssign.Api.csproj.CoreCompileInputs.cache
 /Users/drew/Documents/coding/LockboxAssign/LockboxAssign.Api/obj/Debug/net8.0/LockboxAssign.Api.MvcApplicationPartsAssemblyInfo.cs
 /Users/drew/Documents/coding/LockboxAssign/LockboxAssign.Api/obj/Debug/net8.0/LockboxAssign.Api.MvcApplicationPartsAssemblyInfo.cache
+/Users/drew/Documents/coding/LockboxAssign/LockboxAssign.Api/obj/Debug/net8.0/LockboxAssign.Api.sourcelink.json
 /Users/drew/Documents/coding/LockboxAssign/LockboxAssign.Api/obj/Debug/net8.0/staticwebassets.build.json
 /Users/drew/Documents/coding/LockboxAssign/LockboxAssign.Api/obj/Debug/net8.0/staticwebassets.development.json
 /Users/drew/Documents/coding/LockboxAssign/LockboxAssign.Api/obj/Debug/net8.0/staticwebassets/msbuild.LockboxAssign.Api.Microsoft.AspNetCore.StaticWebAssets.props
