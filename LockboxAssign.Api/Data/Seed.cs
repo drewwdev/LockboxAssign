@@ -14,26 +14,30 @@ public static class Seed
             var lbs = Enumerable.Range(1, 16).Select(i => new Lockbox
             {
                 Id = Guid.NewGuid(),
-                Label = $"LB-1001-{i:00}"
+                Label = i.ToString()
             }).ToList();
             await db.Lockboxes.AddRangeAsync(lbs);
         }
 
         if (!await db.Equipment.AnyAsync())
         {
-            string[] types = ["BX10", "BX15", "CVAN", "PICK"];
+            string[] types = ["TM", "DC", "TT", "JH"];
             var rnd = new Random(1);
+
             var eqs = Enumerable.Range(1, 18).Select(i =>
             {
                 var type = types[rnd.Next(types.Length)];
+                var number = rnd.Next(1000, 9999);
+                var letter = (char)('A' + rnd.Next(0, 26));
                 return new Equipment
                 {
                     Id = Guid.NewGuid(),
-                    UnitNumber = $"{type}-{rnd.Next(1000, 9999)}",
+                    UnitNumber = $"{type}{number}{letter}",
                     Status = "Available",
                     ParkingSpot = rnd.Next(2) == 0 ? $"Front B-{rnd.Next(1, 20):00}" : null
                 };
             }).ToList();
+
             await db.Equipment.AddRangeAsync(eqs);
         }
 
@@ -41,7 +45,9 @@ public static class Seed
 
         if (!await db.Assignments.AnyAsync())
         {
-            var lbs = await db.Lockboxes.OrderBy(x => x.Label).ToListAsync();
+            var lbs = (await db.Lockboxes.ToListAsync())
+                .OrderBy(x => int.Parse(x.Label))
+                .ToList();
             var eqs = await db.Equipment.OrderBy(x => x.UnitNumber).ToListAsync();
             var take = (int)(lbs.Count * 0.6);
             for (int i = 0; i < take && i < eqs.Count; i++)
